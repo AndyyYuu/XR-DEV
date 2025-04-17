@@ -1,0 +1,194 @@
+/* Tree */
+
+/* Cursor */
+
+.cursor svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+
+  display: block;
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+
+  filter: url("#goo");
+  mix-blend-mode: color-dodge;
+}
+
+.cursor__pointer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+
+  overflow: hidden;
+  width: 10px;
+  height: 10px;
+
+  background: red;
+  border: 1px solid #083640;
+  border-radius: 50%;
+  opacity: 0.99;
+  transform: translate3d(
+    calc(var(--mouse-x) * 1px - 50%),
+    calc(var(--mouse-y) * 1px - 50%),
+    0
+  );
+
+  will-change: transform;
+}
+
+.cursor__pointer::before {
+  position: absolute;
+  width: 400%;
+  height: 100%;
+
+  background: linear-gradient(
+      45deg,
+      #4cede1,
+      #ffc53a,
+      #ff858d,
+      #ffc53a,
+      #4cede1
+    )
+    0 0 / 66.66% 100%;
+
+  animation: pointer-gradient 1s linear infinite;
+  will-change: transform;
+
+  content: "";
+}
+
+/* Background */
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  opacity: 0.3;
+}
+
+.background__word {
+  --height: min(15vh, 153px);
+  --width: calc(var(--height) * 18.3173);
+  --direction: 1;
+
+  position: relative;
+
+  aspect-ratio: 2802 / 153;
+  display: block;
+  width: auto;
+  height: var(--height);
+}
+
+.background__word:nth-child(2n + 1) {
+  --direction: -1;
+}
+
+.background__word::before {
+  position: absolute;
+  top: 0;
+  left: calc(var(--position) * var(--width) * -1 - var(--width));
+
+  display: block;
+  width: calc(var(--width) * 4);
+  height: 100%;
+
+  background: url("http://zeweiyu.webdev.iyaserver.com/acad274/XR%20dev.jpg.png")
+    0 50% / contain;
+
+  animation: background calc(60s + var(--duration) * 60s) linear infinite;
+
+  content: "";
+}
+.image-container a {
+  position: relative;
+  z-index: 10;
+}
+/* Body */
+body {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 100vw;
+  height: 180vh;
+
+  background: #093740;
+  cursor: pointer;
+}
+
+body::before {
+  position: absolute;
+  inset: -100px;
+
+  background: url("https://assets.codepen.io/5817405/noise-light.png") 50% /
+    256px 256px;
+
+  animation: noise-background 0.5s steps(1) infinite;
+
+  content: "";
+}
+
+/* Animations */
+img {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: 0 auto; /* 图片水平居中 */
+  
+  
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  justify-content: center; /* 垂直居中 */
+  align-items: center; /* 水平居中 */
+  gap: 20px; /* 图片之间的间距 */
+}
+
+.yeti {
+  position: absolute; /* 绝对定位，确保它不被 flex 布局影响 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) 
+             perspective(20em) 
+             rotateY(calc((var(--mouse-progress-x) - 0.5) * 20deg));
+  transform-origin: center; /* 确保旋转围绕中心 */
+  width: 200px;
+  height: 200px;
+  z-index: 2;
+}
+
+
+
+.image-container {
+  display: inline-block;
+  width: 160px;  /* 容器宽度 */
+  height: 300px; /* 容器高度 */
+  padding: 10px;
+  background-color: lightgray;
+  border-radius: 10px;
+  position: relative; /* 让容器固定 */
+  overflow: hidden; /* 确保图片不会超出容器 */
+}
+
+.clip-shape {
+  width: 200px;
+  height: auto;
+  clip-path: circle(50% at center); /* 将图片裁剪成圆形 */
+}
+
+
+ 
