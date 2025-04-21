@@ -116,7 +116,7 @@ body {
   justify-content: center;
   
   width: 100vw;
-  height: 180vh;
+  height: 250vh;
 
   background: #093740;
   cursor: pointer;
@@ -159,23 +159,31 @@ img {
 }
 
 .yeti {
-  position: absolute; /* 绝对定位，确保它不被 flex 布局影响 */
+  position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) 
-             perspective(20em) 
-             rotateY(calc((var(--mouse-progress-x) - 0.5) * 20deg));
-  transform-origin: center; /* 确保旋转围绕中心 */
+  transform: translate(-50%, -50%);
   width: 200px;
   height: 200px;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.yeti img {
+  width: 200%;
+  height: 200%;
+  object-fit: contain;
+  transform: perspective(20em) rotateY(calc((var(--mouse-progress-x) - 0.5) * 20deg));
+  transform-origin: center;
+  transition: transform 0.1s ease-out;
+}
 
 
 .image-container {
   display: inline-block;
-  width: 160px;  /* 容器宽度 */
+  width: 300px;  /* 容器宽度 */
   height: 300px; /* 容器高度 */
   padding: 10px;
   background-color: lightgray;
